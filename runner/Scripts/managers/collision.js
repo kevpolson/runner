@@ -34,8 +34,8 @@ var managers;
         Collision.prototype.planeAndCloud = function (cloud) {
             var p1 = new createjs.Point();
             var p2 = new createjs.Point();
-            p1.x = this.player.image.x;
-            p1.y = this.player.image.y;
+            p1.x = this.player.x;
+            p1.y = this.player.y;
             p2.x = cloud.image.x;
             p2.y = cloud.image.y;
             if (this.distance(p1, p2) < ((this.player.height / 2) + (cloud.height / 2))) {
@@ -49,8 +49,8 @@ var managers;
         Collision.prototype.planeAndIsland = function () {
             var p1 = new createjs.Point();
             var p2 = new createjs.Point();
-            p1.x = this.player.image.x;
-            p1.y = this.player.image.y;
+            p1.x = this.player.x;
+            p1.y = this.player.y;
             p2.x = this.island.image.x;
             p2.y = this.island.image.y;
             if (this.distance(p1, p2) < ((this.player.height / 2) + (this.island.height / 2))) {

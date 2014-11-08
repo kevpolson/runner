@@ -1,30 +1,40 @@
-﻿/// <reference path="../managers/asset.ts" />
+﻿var __extends = this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    __.prototype = b.prototype;
+    d.prototype = new __();
+};
+/// <reference path="../managers/asset.ts" />
+/// <reference path="gameobject.ts" />
 var objects;
 (function (objects) {
-    // Plane Class
-    var Player = (function () {
+    // Player Class
+    var Player = (function (_super) {
+        __extends(Player, _super);
         function Player(stage, game) {
+            _super.call(this, stage, game, managers.Assets.player, "idle");
+            //width: number;
+            //height: number;
             this.jumping = false;
-            this.stage = stage;
-            this.game = game;
-            this.image = new createjs.Sprite(managers.Assets.player, "idle");
-            this.width = this.image.getBounds().width;
-            this.height = this.image.getBounds().height;
-            this.image.regX = this.width / 2;
-            this.image.regY = this.height / 2;
 
+            //this.stage = stage;
+            //this.game = game;
+            //this.image = new createjs.Sprite(managers.Assets.player, "idle");
+            //this.width = this.image.getBounds().width;
+            //this.height = this.image.getBounds().height;
+            //this.image.regX = this.width / 2;
+            //this.image.regY = this.height / 2;
             this.dx = 5;
 
-            this.image.x = 100;
-            this.image.y = 423 - this.image.regY;
-
-            game.addChild(this.image);
+            this.x = 100;
+            this.y = 423 - this.regY;
+            //game.addChild(this.image);
             //this.engineSound = createjs.Sound.play('engine', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
         }
         Player.prototype.jump = function () {
             if (!this.jumping) {
-                this.prevAnimation = this.image.currentAnimation;
-                this.image.gotoAndPlay("jumping");
+                this.prevAnimation = this.currentAnimation;
+                this.gotoAndPlay("jumping");
                 this.jumping = true;
                 this.falling = false;
                 this.jumpX = 0;
@@ -34,7 +44,7 @@ var objects;
         };
 
         Player.prototype.running = function () {
-            this.image.gotoAndPlay("running");
+            this.gotoAndPlay("running");
         };
 
         Player.prototype.update = function () {
@@ -45,24 +55,19 @@ var objects;
                 this.jumpHieght = Math.sin(this.jumpX * 0.1) * 10 - this.prevJumpHeight;
 
                 //this.prevJumpHeight =
-                this.image.y -= this.jumpHieght;
-                if (this.image.y >= 423 - this.image.regY) {
+                this.y -= this.jumpHieght;
+                if (this.y >= 423 - this.regY) {
                     this.jumping = false;
-                    this.image.y = 423 - this.image.regY;
-                    this.image.gotoAndPlay(this.prevAnimation);
+                    this.y = 423 - this.regY;
+                    this.gotoAndPlay(this.prevAnimation);
                 } else if (!this.falling && this.jumpX >= 25) {
-                    this.image.gotoAndPlay("falling");
+                    this.gotoAndPlay("falling");
                     this.falling = true;
                 }
             }
         };
-
-        Player.prototype.destroy = function () {
-            //this.engineSound.stop();
-            game.removeChild(this.image);
-        };
         return Player;
-    })();
+    })(objects.GameObject);
     objects.Player = Player;
 })(objects || (objects = {}));
 //# sourceMappingURL=player.js.map
