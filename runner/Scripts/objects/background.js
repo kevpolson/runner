@@ -11,7 +11,7 @@ var objects;
             this.width = this.image1.getBounds().width;
             this.height = this.image1.getBounds().height;
 
-            this.dx = 5;
+            this.speed = constants.GAME_SPEED;
 
             this.image1.x = 0;
             this.resetImage2();
@@ -20,23 +20,23 @@ var objects;
             game.addChild(this.image2);
         }
         Background.prototype.update = function () {
-            this.image1.x -= this.dx;
+            this.image1.x -= this.speed;
             if (this.image1.x + this.width <= 0) {
                 this.resetImage1();
             }
 
-            this.image2.x -= this.dx;
+            this.image2.x -= this.speed;
             if (this.image2.x + this.width <= 0) {
                 this.resetImage2();
             }
         };
 
         Background.prototype.resetImage1 = function () {
-            this.image1.x = this.width;
+            this.image1.x = this.width - 1;
         };
 
         Background.prototype.resetImage2 = function () {
-            this.image2.x = this.width;
+            this.image2.x = this.width - 1;
         };
 
         Background.prototype.destroy = function () {

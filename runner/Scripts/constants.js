@@ -10,5 +10,7 @@
     constants.LABEL_FONT = "40px Consolas";
     constants.LABEL_COLOUR = "#FFFF00";
     constants.PLANE_LIVES = 3;
+    constants.GAME_SPEED = 2.5;
+    constants.GROUND_HEIGHT = 423;
 })(constants || (constants = {}));
 //# sourceMappingURL=constants.js.map

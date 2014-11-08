@@ -33,6 +33,20 @@
         }
     }
 
+    // SpriteSheet Data Object
+    var powerTankSheetData = {
+        "images": ["assets/images/energytank.png"],
+        "frames": [
+            [0, 0, 40, 20],   //orange       [0]
+            [40, 0, 40, 20],  //yellow       [1]
+            [80, 0, 40, 20],  //light yellow [2]
+            [120, 0, 40, 20]  //yellow       [3]
+        ],
+        "animations": {
+            "idle": { frames: [0, 1, 2, 3],
+                      speed: 0.05 }
+        }
+    }
 
     // SpriteSheet Data Object
     var spriteSheetData = {
@@ -63,6 +77,7 @@
         public static loader;
         public static atlas: createjs.SpriteSheet;
         public static player: createjs.SpriteSheet;
+        public static energytank: createjs.SpriteSheet;
 
         public static init() {
             createjs.Sound.initializeDefaultPlugins();
@@ -71,6 +86,7 @@
             this.loader.loadManifest(assetManifest);
             this.atlas = new createjs.SpriteSheet(spriteSheetData);
             this.player = new createjs.SpriteSheet(playerSheetData);
+            this.energytank = new createjs.SpriteSheet(powerTankSheetData);
         }
     }
 } 

@@ -36,6 +36,22 @@
     };
 
     // SpriteSheet Data Object
+    var powerTankSheetData = {
+        "images": ["assets/images/energytank.png"],
+        "frames": [
+            [0, 0, 40, 20],
+            [40, 0, 40, 20],
+            [80, 0, 40, 20],
+            [120, 0, 40, 20]
+        ],
+        "animations": {
+            "idle": {
+                frames: [0, 1, 2, 3],
+                speed: 0.05 }
+        }
+    };
+
+    // SpriteSheet Data Object
     var spriteSheetData = {
         "images": ["assets/images/atlas.png"],
         "frames": [
@@ -67,6 +83,7 @@
             this.loader.loadManifest(assetManifest);
             this.atlas = new createjs.SpriteSheet(spriteSheetData);
             this.player = new createjs.SpriteSheet(playerSheetData);
+            this.energytank = new createjs.SpriteSheet(powerTankSheetData);
         };
         return Assets;
     })();

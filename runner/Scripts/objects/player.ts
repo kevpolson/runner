@@ -3,32 +3,21 @@
 module objects {
     // Player Class
     export class Player extends GameObject {
-        //image: createjs.Sprite;
-        //stage: createjs.Stage;
-        //game: createjs.Container;
         engineSound: createjs.SoundInstance;
-        //width: number;
-        //height: number;
+
+        prevAnimation: string;
+        prevJumpHeight: number;
+        jumpHieght: number;
         jumping: boolean = false;
         jumpX: number;
-        dx: number;
+        falling: boolean;
         constructor(stage: createjs.Stage, game: createjs.Container) {
             super(stage, game, managers.Assets.player, "idle");
-            //this.stage = stage;
-            //this.game = game;
-            //this.image = new createjs.Sprite(managers.Assets.player, "idle");
-            //this.width = this.image.getBounds().width;
-            //this.height = this.image.getBounds().height;
-            //this.image.regX = this.width / 2;
-            //this.image.regY = this.height / 2;
-
-            this.dx = 5;
 
             this.x = 100;
-            this.y = 423 - this.regY;
+            this.y = constants.GROUND_HEIGHT - this.regY;
 
-            //game.addChild(this.image);
-            //this.engineSound = createjs.Sound.play('engine', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
+            this.prevAnimation = this.currentAnimation;
         }
 
         jump() {
@@ -47,22 +36,21 @@ module objects {
             this.gotoAndPlay("running");
         }
 
-        prevAnimation: string;
-        prevJumpHeight: number;
-        jumpHieght: number;
-        falling: boolean;
+        idle() {
+            this.gotoAndPlay("idle");
+        }
+
         update() {
             if (this.jumping) {
                 this.prevJumpHeight = this.jumpHieght;
                 this.jumpX += 1; 
-                console.log(this.jumpX);
+
                 this.jumpHieght = Math.sin(this.jumpX * 0.1) * 10 - this.prevJumpHeight;
-                //this.prevJumpHeight =
 
                 this.y -= this.jumpHieght;
-                if (this.y >= 423 - this.regY) {
+                if (this.y >= constants.GROUND_HEIGHT - this.regY) {
                     this.jumping = false;
-                    this.y = 423 - this.regY;
+                    this.y = constants.GROUND_HEIGHT - this.regY;
                     this.gotoAndPlay(this.prevAnimation);
                 }
                 else if (!this.falling && this.jumpX >= 25) {
@@ -71,12 +59,5 @@ module objects {
                 } 
             }
         }
-
-        /*
-        destroy() {
-            //this.engineSound.stop();
-            game.removeChild(this.image);
-        }
-        */
     }
 } 

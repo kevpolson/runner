@@ -1,6 +1,6 @@
 ﻿/// <reference path="../objects/button.ts" />
 /// <reference path="../objects/cloud.ts" />
-/// <reference path="../objects/island.ts" />
+/// <reference path="../objects/powertank.ts" />
 /// <reference path="../objects/label.ts" />
 /// <reference path="../objects/background.ts" />
 /// <reference path="../objects/player.ts" />
@@ -10,13 +10,14 @@ var states;
 (function (states) {
     function playState() {
         background.update();
-        island.update();
+        powertank.update();
         player.update();
 
+        /*
         for (var count = 0; count < constants.CLOUD_NUM; count++) {
-            clouds[count].update();
+        clouds[count].update();
         }
-
+        */
         collision.update();
         scoreboard.update();
 
@@ -38,8 +39,9 @@ var states;
 
         // Instantiate Game Objects
         background = new objects.Background(stage, game);
-        island = new objects.Island(stage, game);
+        powertank = new objects.PowerTank(stage, game);
         player = new objects.Player(stage, game);
+        player.running();
 
         // Show Cursor
         stage.cursor = "none";
@@ -52,7 +54,7 @@ var states;
         scoreboard = new objects.Scoreboard(stage, game);
 
         // Instantiate Collision Manager
-        collision = new managers.Collision(player, island, clouds, scoreboard);
+        collision = new managers.Collision(player, powertank, clouds, scoreboard);
 
         stage.addChild(game);
     }

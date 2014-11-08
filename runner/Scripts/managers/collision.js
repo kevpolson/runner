@@ -1,15 +1,15 @@
 ﻿/// <reference path="../objects/cloud.ts" />
-/// <reference path="../objects/island.ts" />
+/// <reference path="../objects/powertank.ts" />
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 var managers;
 (function (managers) {
     // Collision Manager Class
     var Collision = (function () {
-        function Collision(player, island, clouds, scoreboard) {
+        function Collision(player, powertank, clouds, scoreboard) {
             this.clouds = [];
             this.player = player;
-            this.island = island;
+            this.powertank = powertank;
             this.clouds = clouds;
             this.scoreboard = scoreboard;
         }
@@ -46,17 +46,17 @@ var managers;
         };
 
         // check collision between plane and island
-        Collision.prototype.planeAndIsland = function () {
+        Collision.prototype.playerAndPowerTank = function () {
             var p1 = new createjs.Point();
             var p2 = new createjs.Point();
             p1.x = this.player.x;
             p1.y = this.player.y;
-            p2.x = this.island.image.x;
-            p2.y = this.island.image.y;
-            if (this.distance(p1, p2) < ((this.player.height / 2) + (this.island.height / 2))) {
+            p2.x = this.powertank.x;
+            p2.y = this.powertank.y;
+            if (this.distance(p1, p2) < ((this.player.height / 2) + (this.powertank.height / 2))) {
                 createjs.Sound.play("yay");
                 this.scoreboard.score += 100;
-                this.island.reset();
+                this.powertank.reset();
             }
         };
 
@@ -65,7 +65,7 @@ var managers;
             for (var count = 0; count < constants.CLOUD_NUM; count++) {
                 this.planeAndCloud(this.clouds[count]);
             }
-            this.planeAndIsland();
+            this.playerAndPowerTank();
         };
         return Collision;
     })();

@@ -19,6 +19,8 @@ var objects;
             this.regX = this.width * 0.5;
             this.regY = this.height * 0.5;
 
+            this.speed = constants.GAME_SPEED;
+
             game.addChild(this);
         }
         GameObject.prototype.update = function () {

@@ -13,23 +13,12 @@ var objects;
         __extends(Player, _super);
         function Player(stage, game) {
             _super.call(this, stage, game, managers.Assets.player, "idle");
-            //width: number;
-            //height: number;
             this.jumping = false;
 
-            //this.stage = stage;
-            //this.game = game;
-            //this.image = new createjs.Sprite(managers.Assets.player, "idle");
-            //this.width = this.image.getBounds().width;
-            //this.height = this.image.getBounds().height;
-            //this.image.regX = this.width / 2;
-            //this.image.regY = this.height / 2;
-            this.dx = 5;
-
             this.x = 100;
-            this.y = 423 - this.regY;
-            //game.addChild(this.image);
-            //this.engineSound = createjs.Sound.play('engine', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
+            this.y = constants.GROUND_HEIGHT - this.regY;
+
+            this.prevAnimation = this.currentAnimation;
         }
         Player.prototype.jump = function () {
             if (!this.jumping) {
@@ -47,18 +36,21 @@ var objects;
             this.gotoAndPlay("running");
         };
 
+        Player.prototype.idle = function () {
+            this.gotoAndPlay("idle");
+        };
+
         Player.prototype.update = function () {
             if (this.jumping) {
                 this.prevJumpHeight = this.jumpHieght;
                 this.jumpX += 1;
-                console.log(this.jumpX);
+
                 this.jumpHieght = Math.sin(this.jumpX * 0.1) * 10 - this.prevJumpHeight;
 
-                //this.prevJumpHeight =
                 this.y -= this.jumpHieght;
-                if (this.y >= 423 - this.regY) {
+                if (this.y >= constants.GROUND_HEIGHT - this.regY) {
                     this.jumping = false;
-                    this.y = 423 - this.regY;
+                    this.y = constants.GROUND_HEIGHT - this.regY;
                     this.gotoAndPlay(this.prevAnimation);
                 } else if (!this.falling && this.jumpX >= 25) {
                     this.gotoAndPlay("falling");

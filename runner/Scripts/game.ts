@@ -1,7 +1,7 @@
 ﻿/// <reference path="constants.ts" />
 /// <reference path="managers/asset.ts" />
 /// <reference path="objects/cloud.ts" />
-/// <reference path="objects/island.ts" />
+/// <reference path="objects/powertank.ts" />
 /// <reference path="objects/background.ts" />
 /// <reference path="objects/player.ts" />
 /// <reference path="objects/scoreboard.ts" />
@@ -20,7 +20,7 @@ var game: createjs.Container;
 
 var background: objects.Background;
 var player: objects.Player;
-var island: objects.Island;
+var powertank: objects.PowerTank;
 var clouds = []; // Clouds array;
 var scoreboard: objects.Scoreboard;
 

@@ -5,7 +5,7 @@ module objects {
         game: createjs.Container;
         width: number;
         height: number;
-
+        speed: number;
         constructor(stage: createjs.Stage, game: createjs.Container, spriteSheet: createjs.SpriteSheet, newAnimation: string) {
             this.stage = stage;
             this.game = game;
@@ -15,6 +15,8 @@ module objects {
             this.height = this.getBounds().height;
             this.regX = this.width * 0.5;
             this.regY = this.height * 0.5;
+
+            this.speed = constants.GAME_SPEED;
 
             game.addChild(this);
         }
