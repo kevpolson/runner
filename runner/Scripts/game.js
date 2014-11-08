@@ -1,7 +1,7 @@
 ﻿/// <reference path="constants.ts" />
 /// <reference path="managers/asset.ts" />
 /// <reference path="objects/cloud.ts" />
-/// <reference path="objects/powertank.ts" />
+/// <reference path="objects/collectable.ts" />
 /// <reference path="objects/background.ts" />
 /// <reference path="objects/player.ts" />
 /// <reference path="objects/scoreboard.ts" />
@@ -18,7 +18,7 @@ var game;
 
 var background;
 var player;
-var powertank;
+var energytank;
 var clouds = [];
 var scoreboard;
 

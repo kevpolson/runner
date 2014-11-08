@@ -1,6 +1,6 @@
 ﻿/// <reference path="../objects/button.ts" />
 /// <reference path="../objects/cloud.ts" />
-/// <reference path="../objects/powertank.ts" />
+/// <reference path="../objects/collectable.ts" />
 /// <reference path="../objects/label.ts" />
 /// <reference path="../objects/background.ts" />
 /// <reference path="../objects/player.ts" />
@@ -9,7 +9,7 @@
 module states {
     export function playState() {
         background.update();
-        powertank.update();
+        energytank.update();
         player.update();
 
         /*
@@ -38,7 +38,7 @@ module states {
 
         // Instantiate Game Objects
         background = new objects.Background(stage, game);
-        powertank = new objects.PowerTank(stage, game);
+        energytank = new objects.Collectable(stage, game);
         player = new objects.Player(stage, game);
         player.running();
         
@@ -54,7 +54,7 @@ module states {
         scoreboard = new objects.Scoreboard(stage, game);
 
         // Instantiate Collision Manager
-        collision = new managers.Collision(player, powertank, clouds, scoreboard);
+        collision = new managers.Collision(player, energytank, clouds, scoreboard);
 
         stage.addChild(game);
     }

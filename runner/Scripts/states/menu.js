@@ -2,7 +2,6 @@
 /// <reference path="../objects/scoreboard.ts" />
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/background.ts" />
-/// <reference path="../objects/powertank.ts" />
 /// <reference path="../objects/cloud.ts" />
 /// <reference path="../objects/button.ts" />
 /// <reference path="../objects/label.ts" />

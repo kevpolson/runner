@@ -1,5 +1,5 @@
 ﻿/// <reference path="../objects/cloud.ts" />
-/// <reference path="../objects/powertank.ts" />
+/// <reference path="../objects/collectable.ts" />
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 
@@ -8,13 +8,13 @@ module managers {
     export class Collision {
         // class variables
         private player: objects.Player;
-        private powertank: objects.PowerTank;
+        private energytank: objects.Collectable;
         private clouds = [];
         private scoreboard: objects.Scoreboard;
 
-        constructor(player: objects.Player, powertank: objects.PowerTank, clouds, scoreboard: objects.Scoreboard) {
+        constructor(player: objects.Player, powertank: objects.Collectable, clouds, scoreboard: objects.Scoreboard) {
             this.player = player;
-            this.powertank = powertank;
+            this.energytank = powertank;
             this.clouds = clouds;
             this.scoreboard = scoreboard;
         }
@@ -52,17 +52,17 @@ module managers {
         }
 
         // check collision between plane and island
-        private playerAndPowerTank() {
+        private playerAndCollectable() {
             var p1: createjs.Point = new createjs.Point();
             var p2: createjs.Point = new createjs.Point();
             p1.x = this.player.x;
             p1.y = this.player.y;
-            p2.x = this.powertank.x;
-            p2.y = this.powertank.y;
-            if (this.distance(p1, p2) < ((this.player.height / 2) + (this.powertank.height / 2))) {
+            p2.x = this.energytank.x;
+            p2.y = this.energytank.y;
+            if (this.distance(p1, p2) < ((this.player.height / 2) + (this.energytank.height / 2))) {
                 createjs.Sound.play("yay");
                 this.scoreboard.score += 100;
-                this.powertank.reset();
+                this.energytank.reset();
             }
         }
 
@@ -71,7 +71,7 @@ module managers {
             for (var count = 0; count < constants.CLOUD_NUM; count++) {
                 this.planeAndCloud(this.clouds[count]);
             }
-            this.playerAndPowerTank();
+            this.playerAndCollectable();
         }
     }
 } 

@@ -1,7 +1,7 @@
 ﻿/// <reference path="../managers/asset.ts" />
 module objects {
-    // PowerTank Class
-    export class PowerTank extends GameObject {
+    // Collectable Class
+    export class Collectable extends GameObject {
         constructor(stage: createjs.Stage, game: createjs.Container) {
             super(stage, game, managers.Assets.energytank, "idle");
 
@@ -16,8 +16,12 @@ module objects {
         }
 
         reset() {
+            var minY = stage.canvas.height * 0.6;
+            var maxY = constants.GROUND_HEIGHT - this.regY;
+
             this.x = this.stage.canvas.width; 
-            this.y = constants.GROUND_HEIGHT - this.regY;//Math.floor(Math.random() * (constants.GROUND_HEIGHT - this.height));
+            this.y = minY;
+            //this.y = Math.floor(Math.random() * (maxY - minY)) + minY;
         }
     }
 }
