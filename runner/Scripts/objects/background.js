@@ -1,0 +1,50 @@
+﻿/// <reference path="../managers/asset.ts" />
+var objects;
+(function (objects) {
+    // Background Class
+    var Background = (function () {
+        function Background(stage, game) {
+            this.stage = stage;
+            this.game = game;
+            this.image1 = new createjs.Bitmap(managers.Assets.loader.getResult("background"));
+            this.image2 = new createjs.Bitmap(managers.Assets.loader.getResult("background"));
+            this.width = this.image1.getBounds().width;
+            this.height = this.image1.getBounds().height;
+
+            this.dx = 5;
+
+            this.image1.x = 0;
+            this.resetImage2();
+
+            game.addChild(this.image1);
+            game.addChild(this.image2);
+        }
+        Background.prototype.update = function () {
+            this.image1.x -= this.dx;
+            if (this.image1.x + this.width <= 0) {
+                this.resetImage1();
+            }
+
+            this.image2.x -= this.dx;
+            if (this.image2.x + this.width <= 0) {
+                this.resetImage2();
+            }
+        };
+
+        Background.prototype.resetImage1 = function () {
+            this.image1.x = this.width;
+        };
+
+        Background.prototype.resetImage2 = function () {
+            this.image2.x = this.width;
+        };
+
+        Background.prototype.destroy = function () {
+            game.removeChild(this.image1);
+            game.removeChild(this.image2);
+        };
+        return Background;
+    })();
+    objects.Background = Background;
+})(objects || (objects = {}));
+//# sourceMappingURL=background.js.map
