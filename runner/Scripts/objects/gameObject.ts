@@ -25,7 +25,6 @@ module objects {
         }
 
         destroy() {
-            //this.engineSound.stop();
             game.removeChild(this);
         }
     }

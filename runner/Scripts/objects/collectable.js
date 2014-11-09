@@ -34,4 +34,4 @@ var objects;
     })(objects.GameObject);
     objects.Collectable = Collectable;
 })(objects || (objects = {}));
-//# sourceMappingURL=Collectable.js.map
+//# sourceMappingURL=collectable.js.map

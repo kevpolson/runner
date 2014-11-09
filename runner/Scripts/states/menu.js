@@ -2,7 +2,7 @@
 /// <reference path="../objects/scoreboard.ts" />
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/background.ts" />
-/// <reference path="../objects/cloud.ts" />
+/// <reference path="../objects/missile.ts" />
 /// <reference path="../objects/button.ts" />
 /// <reference path="../objects/label.ts" />
 var states;
@@ -17,11 +17,6 @@ var states;
     }
     states.playButtonClicked = playButtonClicked;
 
-    function playerJump(event) {
-        player.jump();
-    }
-    states.playerJump = playerJump;
-
     function menuState() {
         player.update();
     }
@@ -32,13 +27,13 @@ var states;
 
         // Declare new Game Container
         game = new createjs.Container();
+        game.addEventListener('click', playerJump);
 
         // Instantiate Game Objects
         background = new objects.Background(stage, game);
 
         //ocean = new objects.Ocean(stage, game);
         player = new objects.Player(stage, game);
-        game.addEventListener('click', playerJump);
 
         // Show Cursor
         stage.cursor = "default";

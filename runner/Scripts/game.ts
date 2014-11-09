@@ -1,6 +1,6 @@
 ﻿/// <reference path="constants.ts" />
 /// <reference path="managers/asset.ts" />
-/// <reference path="objects/cloud.ts" />
+/// <reference path="objects/missile.ts" />
 /// <reference path="objects/collectable.ts" />
 /// <reference path="objects/background.ts" />
 /// <reference path="objects/player.ts" />
@@ -21,7 +21,7 @@ var game: createjs.Container;
 var background: objects.Background;
 var player: objects.Player;
 var energytank: objects.Collectable;
-var clouds = []; // Clouds array;
+var missiles = []; 
 var scoreboard: objects.Scoreboard;
 
 var collision: managers.Collision;
@@ -44,6 +44,7 @@ function init(): void {
     stage.enableMouseOver(30);
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", gameLoop);
+
     optimizeForMobile();
 
     currentState = constants.MENU_STATE;
@@ -85,6 +86,11 @@ function changeState(state: number): void {
             break;
     }
 }
+
+function playerJump(event: MouseEvent) {
+    player.jump();
+}
+
 
 
 

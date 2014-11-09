@@ -27,11 +27,10 @@ var objects;
         };
 
         GameObject.prototype.destroy = function () {
-            //this.engineSound.stop();
             game.removeChild(this);
         };
         return GameObject;
     })(createjs.Sprite);
     objects.GameObject = GameObject;
 })(objects || (objects = {}));
-//# sourceMappingURL=gameObject.js.map
+//# sourceMappingURL=gameobject.js.map

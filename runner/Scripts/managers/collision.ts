@@ -1,4 +1,4 @@
-﻿/// <reference path="../objects/cloud.ts" />
+﻿/// <reference path="../objects/missile.ts" />
 /// <reference path="../objects/collectable.ts" />
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/scoreboard.ts" />
@@ -6,16 +6,15 @@
 module managers {
     // Collision Manager Class
     export class Collision {
-        // class variables
         private player: objects.Player;
         private energytank: objects.Collectable;
-        private clouds = [];
+        private missiles = [];
         private scoreboard: objects.Scoreboard;
 
-        constructor(player: objects.Player, powertank: objects.Collectable, clouds, scoreboard: objects.Scoreboard) {
+        constructor(player: objects.Player, powertank: objects.Collectable, missiles, scoreboard: objects.Scoreboard) {
             this.player = player;
             this.energytank = powertank;
-            this.clouds = clouds;
+            this.missiles = missiles;
             this.scoreboard = scoreboard;
         }
 
@@ -37,17 +36,17 @@ module managers {
         }
 
         // check collision between plane and any cloud object
-        private planeAndCloud(cloud: objects.Cloud) {
+        private planeAndEnemy(enemy: objects.Missile) {
             var p1: createjs.Point = new createjs.Point();
             var p2: createjs.Point = new createjs.Point();
             p1.x = this.player.x;
             p1.y = this.player.y;
-            p2.x = cloud.image.x;
-            p2.y = cloud.image.y;
-            if (this.distance(p1, p2) < ((this.player.height / 2) + (cloud.height / 2))) {
+            p2.x = enemy.x;
+            p2.y = enemy.y;
+            if (this.distance(p1, p2) < ((this.player.height / 2) + (enemy.height / 2))) {
                 createjs.Sound.play("thunder");
                 this.scoreboard.lives -= 1;
-                cloud.reset();
+                enemy.reset();
             }
         }
 
@@ -68,8 +67,8 @@ module managers {
 
         // Utility Function to Check Collisions
         update() {
-            for (var count = 0; count < constants.CLOUD_NUM; count++) {
-                this.planeAndCloud(this.clouds[count]);
+            for (var count = 0; count < constants.MISSILE_NUM; count++) {
+                this.planeAndEnemy(this.missiles[count]);
             }
             this.playerAndCollectable();
         }

@@ -1,5 +1,5 @@
 ﻿/// <reference path="../objects/button.ts" />
-/// <reference path="../objects/cloud.ts" />
+/// <reference path="../objects/missile.ts" />
 /// <reference path="../objects/collectable.ts" />
 /// <reference path="../objects/label.ts" />
 /// <reference path="../objects/background.ts" />
@@ -12,11 +12,9 @@ module states {
         energytank.update();
         player.update();
 
-        /*
-        for (var count = 0; count < constants.CLOUD_NUM; count++) {
-            clouds[count].update();
+        for (var count = 0; count < constants.MISSILE_NUM; count++) {
+            missiles[count].update();
         }
-        */
 
         collision.update();
         scoreboard.update();
@@ -35,6 +33,7 @@ module states {
     export function play(): void {
         // Declare new Game Container
         game = new createjs.Container();
+        game.addEventListener('click', playerJump);
 
         // Instantiate Game Objects
         background = new objects.Background(stage, game);
@@ -46,15 +45,15 @@ module states {
         stage.cursor = "none";
 
         // Create multiple clouds
-        for (var count = 0; count < constants.CLOUD_NUM; count++) {
-            clouds[count] = new objects.Cloud(stage, game);
+        for (var count = 0; count < constants.MISSILE_NUM; count++) {
+            missiles[count] = new objects.Missile(stage, game);
         }
-
+        
         // Display Scoreboard
         scoreboard = new objects.Scoreboard(stage, game);
 
         // Instantiate Collision Manager
-        collision = new managers.Collision(player, energytank, clouds, scoreboard);
+        collision = new managers.Collision(player, energytank, missiles, scoreboard);
 
         stage.addChild(game);
     }

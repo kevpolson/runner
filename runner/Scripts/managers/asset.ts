@@ -8,7 +8,7 @@
         { id: "yay", src: "assets/sounds/yay.ogg" }
     ];
 
-    // SpriteSheet Data Object
+    // SpriteSheet for Player Object
     var playerSheetData = {
         "images": ["assets/images/M484SpaceSoldier.png"],
         "frames": [
@@ -33,8 +33,8 @@
         }
     }
 
-    // SpriteSheet Data Object
-    var powerTankSheetData = {
+    // SpriteSheet for Collectable Object
+    var energyTankSheetData = {
         "images": ["assets/images/energytank.png"],
         "frames": [
             [0, 0, 40, 20],   //orange       [0]
@@ -48,7 +48,18 @@
         }
     }
 
-    // SpriteSheet Data Object
+    // SpriteSheet for Missile Object
+    var missileSheetData = {
+        "images": ["assets/images/missile.png"],
+        "frames": [
+            [0, 0, 50, 30] //missile [0]
+        ],
+        "animations": {
+            "idle": [0]
+        }
+    }
+
+    // SpriteSheet for misc Objects
     var spriteSheetData = {
         "images": ["assets/images/atlas.png"],
         "frames": [
@@ -78,6 +89,7 @@
         public static atlas: createjs.SpriteSheet;
         public static player: createjs.SpriteSheet;
         public static energytank: createjs.SpriteSheet;
+        public static missile: createjs.SpriteSheet;
 
         public static init() {
             createjs.Sound.initializeDefaultPlugins();
@@ -86,7 +98,8 @@
             this.loader.loadManifest(assetManifest);
             this.atlas = new createjs.SpriteSheet(spriteSheetData);
             this.player = new createjs.SpriteSheet(playerSheetData);
-            this.energytank = new createjs.SpriteSheet(powerTankSheetData);
+            this.energytank = new createjs.SpriteSheet(energyTankSheetData);
+            this.missile = new createjs.SpriteSheet(missileSheetData);
         }
     }
 } 
