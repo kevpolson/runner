@@ -63,7 +63,6 @@
     <Content Include="assets\images\background.png" />
     <Content Include="assets\images\energytank.png" />
     <Content Include="assets\images\loading.jpg" />
-    <Content Include="assets\images\M484SpaceSoldier - Copy.png" />
     <Content Include="assets\images\M484SpaceSoldier.png" />
     <Content Include="assets\images\missile.png" />
     <Content Include="assets\sounds\UnderTheClouds.mp3" />
