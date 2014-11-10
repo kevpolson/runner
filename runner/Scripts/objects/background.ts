@@ -39,11 +39,11 @@ module objects {
         }
 
         resetImage1() {
-            this.image1.x = this.width - 1;
+            this.image1.x = this.width - constants.GAME_SPEED;
         }
 
         resetImage2() {
-            this.image2.x = this.width - 1;
+            this.image2.x = this.width - constants.GAME_SPEED;
         }
 
         destroy() {

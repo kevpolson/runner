@@ -36,6 +36,8 @@ function preload() {
     managers.Assets.loader.addEventListener("complete", init);
 }
 
+var bgMusic;
+
 // init called after Assets have been loaded.
 function init() {
     stage = new createjs.Stage(document.getElementById("canvas"));
@@ -45,6 +47,7 @@ function init() {
 
     optimizeForMobile();
 
+    bgMusic = createjs.Sound.play('bgMusic', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
     currentState = constants.MENU_STATE;
     changeState(currentState);
 }
@@ -60,6 +63,8 @@ function optimizeForMobile() {
 function gameLoop(event) {
     currentStateFunction();
     stage.update();
+
+    console.log("objects: " + game.children.length);
 }
 
 function changeState(state) {
@@ -86,6 +91,19 @@ function changeState(state) {
 }
 
 function playerJump(event) {
-    player.jump();
+    player.jumpPressed();
+}
+
+function playerShoot(event) {
+    if (scoreboard.energy > 0) {
+        event.currentTarget.exploded = true;
+
+        player.shootPressed();
+
+        scoreboard.energy--;
+        scoreboard.score += 100;
+    } else {
+        //make a noise for no ammo
+    }
 }
 //# sourceMappingURL=game.js.map

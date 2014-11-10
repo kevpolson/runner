@@ -22,6 +22,7 @@ module states {
         if (scoreboard.lives <= 0) {
             stage.removeChild(game);
             player.destroy();
+            player.destroyLaser();
             game.removeAllChildren();
             game.removeAllEventListeners();
             currentState = constants.GAME_OVER_STATE;
@@ -41,12 +42,10 @@ module states {
         player = new objects.Player(stage, game);
         player.running();
         
-        // Show Cursor
-        stage.cursor = "none";
-
         // Create multiple clouds
         for (var count = 0; count < constants.MISSILE_NUM; count++) {
             missiles[count] = new objects.Missile(stage, game);
+            missiles[count].on('pressup', playerShoot);
         }
         
         // Display Scoreboard

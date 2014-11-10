@@ -16,12 +16,11 @@ module objects {
         }
 
         reset() {
-            var minY = stage.canvas.height * 0.6;
+            var minY = stage.canvas.height * 0.66;
             var maxY = constants.GROUND_HEIGHT - this.regY;
 
-            this.x = this.stage.canvas.width; 
-            this.y = minY;
-            //this.y = Math.floor(Math.random() * (maxY - minY)) + minY;
+            this.x = Math.floor(Math.random() * this.stage.canvas.width) + this.stage.canvas.width;
+            this.y = Math.floor(Math.random() * (maxY - minY)) + minY;
         }
     }
 }

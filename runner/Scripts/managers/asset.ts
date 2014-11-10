@@ -3,7 +3,7 @@
     var assetManifest = [
         { id: "loading", src: "assets/images/loading.jpg" },
         { id: "background", src: "assets/images/background.png" },
-        { id: "engine", src: "assets/sounds/engine.ogg" },
+        { id: "bgMusic", src: "assets/sounds/UnderTheClouds.mp3" },
         { id: "thunder", src: "assets/sounds/thunder.ogg" },
         { id: "yay", src: "assets/sounds/yay.ogg" }
     ];
@@ -12,17 +12,19 @@
     var playerSheetData = {
         "images": ["assets/images/M484SpaceSoldier.png"],
         "frames": [
-            [8, 11, 50, 50],   //idle  [0]
-            [213, 12, 48, 48], //jump  [1]
-            [315, 12, 48, 48], //fall  [2]
-            [8, 67, 50, 50],   //run1  [3]
-            [59, 67, 50, 50],  //run2  [4]
-            [110, 67, 50, 50], //run3  [5]
-            [161, 67, 50, 50], //run4  [6]
-            [212, 67, 50, 50], //run5  [7]
-            [263, 67, 50, 50], //run6  [8]
-            [314, 67, 50, 50], //run7  [9]
-            [365, 67, 50, 50]  //run8 [10]
+            [8, 11, 50, 50],    //idle   [0]
+            [213, 12, 48, 48],  //jump   [1]
+            [315, 12, 48, 48],  //fall   [2]
+            [8, 67, 50, 50],    //run1   [3]
+            [59, 67, 50, 50],   //run2   [4]
+            [110, 67, 50, 50],  //run3   [5]
+            [161, 67, 50, 50],  //run4   [6]
+            [212, 67, 50, 50],  //run5   [7]
+            [263, 67, 50, 50],  //run6   [8]
+            [314, 67, 50, 50],  //run7   [9]
+            [365, 67, 50, 50],  //run8  [10]
+            [150, 270, 50, 50], //boom  [11]
+            [416, 11, 50, 50]   //blank [12]
         ],
         "animations": {
             "idle": [0],
@@ -50,12 +52,16 @@
 
     // SpriteSheet for Missile Object
     var missileSheetData = {
-        "images": ["assets/images/missile.png"],
+        "images": ["assets/images/missile.png", "assets/images/M484SpaceSoldier.png"],
         "frames": [
-            [0, 0, 50, 30] //missile [0]
+            [0, 0, 50, 30, 0],  //missile [0]
+            [150, 270, 50, 50, 1], //boom    [1]
+            [416, 11, 50, 50, 1]   //blank   [2]
         ],
         "animations": {
-            "idle": [0]
+            "idle": [0],
+            "expolsion": { frames: [1, 2],
+                           speed: 0.25 }
         }
     }
 

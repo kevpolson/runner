@@ -9,7 +9,8 @@
     constants.MISSILE_NUM = 2;
     constants.LABEL_FONT = "40px Consolas";
     constants.LABEL_COLOUR = "#FFFF00";
-    constants.PLANE_LIVES = 3;
+    constants.PLAYER_LIVES = 5;
+    constants.EXPLOSION_TIME = 1000;
     constants.GAME_SPEED = 2.5;
     constants.GROUND_HEIGHT = 423;
 })(constants || (constants = {}));

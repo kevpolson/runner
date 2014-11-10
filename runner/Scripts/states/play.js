@@ -23,6 +23,7 @@ var states;
         if (scoreboard.lives <= 0) {
             stage.removeChild(game);
             player.destroy();
+            player.destroyLaser();
             game.removeAllChildren();
             game.removeAllEventListeners();
             currentState = constants.GAME_OVER_STATE;
@@ -43,11 +44,9 @@ var states;
         player = new objects.Player(stage, game);
         player.running();
 
-        // Show Cursor
-        stage.cursor = "none";
-
         for (var count = 0; count < constants.MISSILE_NUM; count++) {
             missiles[count] = new objects.Missile(stage, game);
+            missiles[count].on('pressup', playerShoot);
         }
 
         // Display Scoreboard

@@ -40,8 +40,9 @@ var managers;
             p2.y = enemy.y;
             if (this.distance(p1, p2) < ((this.player.height / 2) + (enemy.height / 2))) {
                 createjs.Sound.play("thunder");
+                enemy.exploded = true;
+
                 this.scoreboard.lives -= 1;
-                enemy.reset();
             }
         };
 
@@ -55,7 +56,9 @@ var managers;
             p2.y = this.energytank.y;
             if (this.distance(p1, p2) < ((this.player.height / 2) + (this.energytank.height / 2))) {
                 createjs.Sound.play("yay");
-                this.scoreboard.score += 100;
+                this.scoreboard.energy += constants.PLAYER_LIVES;
+
+                //this.scoreboard.score += 100;
                 this.energytank.reset();
             }
         };
@@ -63,7 +66,9 @@ var managers;
         // Utility Function to Check Collisions
         Collision.prototype.update = function () {
             for (var count = 0; count < constants.MISSILE_NUM; count++) {
-                this.planeAndEnemy(this.missiles[count]);
+                if (!this.missiles[count].exploded) {
+                    this.planeAndEnemy(this.missiles[count]);
+                }
             }
             this.playerAndCollectable();
         };

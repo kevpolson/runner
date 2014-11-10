@@ -32,11 +32,11 @@ var objects;
         };
 
         Background.prototype.resetImage1 = function () {
-            this.image1.x = this.width - 1;
+            this.image1.x = this.width - constants.GAME_SPEED;
         };
 
         Background.prototype.resetImage2 = function () {
-            this.image2.x = this.width - 1;
+            this.image2.x = this.width - constants.GAME_SPEED;
         };
 
         Background.prototype.destroy = function () {

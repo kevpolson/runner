@@ -4,7 +4,7 @@
     var assetManifest = [
         { id: "loading", src: "assets/images/loading.jpg" },
         { id: "background", src: "assets/images/background.png" },
-        { id: "engine", src: "assets/sounds/engine.ogg" },
+        { id: "bgMusic", src: "assets/sounds/UnderTheClouds.mp3" },
         { id: "thunder", src: "assets/sounds/thunder.ogg" },
         { id: "yay", src: "assets/sounds/yay.ogg" }
     ];
@@ -23,7 +23,9 @@
             [212, 67, 50, 50],
             [263, 67, 50, 50],
             [314, 67, 50, 50],
-            [365, 67, 50, 50]
+            [365, 67, 50, 50],
+            [150, 270, 50, 50],
+            [416, 11, 50, 50]
         ],
         "animations": {
             "idle": [0],
@@ -53,12 +55,17 @@
 
     // SpriteSheet for Missile Object
     var missileSheetData = {
-        "images": ["assets/images/missile.png"],
+        "images": ["assets/images/missile.png", "assets/images/M484SpaceSoldier.png"],
         "frames": [
-            [0, 0, 50, 30]
+            [0, 0, 50, 30, 0],
+            [150, 270, 50, 50, 1],
+            [416, 11, 50, 50, 1]
         ],
         "animations": {
-            "idle": [0]
+            "idle": [0],
+            "expolsion": {
+                frames: [1, 2],
+                speed: 0.25 }
         }
     };
 
