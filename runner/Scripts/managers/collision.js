@@ -36,8 +36,9 @@ var managers;
             var p2 = new createjs.Point();
             p1.x = this.player.x;
             p1.y = this.player.y;
-            p2.x = enemy.x;
-            p2.y = enemy.y;
+            p2.x = enemy.x + enemy.offsetX;
+            p2.y = enemy.y + enemy.offsetY;
+
             if (this.distance(p1, p2) < ((this.player.height / 2) + (enemy.height / 2))) {
                 enemy.exploded = true;
 

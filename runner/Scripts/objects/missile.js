@@ -14,8 +14,12 @@ var objects;
         function Missile(stage, game) {
             _super.call(this, stage, game, managers.Assets.missile, "idle");
             this.exploded = false;
+            this.offsetX = 24;
+            this.offsetY = 14;
 
             //this.explosionTime = constants.EXPLOSION_TIME;
+            this.width = 50;
+            this.height = 30;
             this.reset();
         }
         //move missile forward and check to see if it has exploded

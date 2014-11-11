@@ -4,12 +4,12 @@ module managers {
     var assetManifest = [
         { id: "loading", src: "assets/images/loading.jpg" },
         { id: "background", src: "assets/images/background.png" },
-        { id: "bgMusic", src: "assets/sounds/UnderTheClouds.mp3" },
         { id: "explosion", src: "assets/sounds/boom.mp3" },
         { id: "death", src: "assets/sounds/death.mp3" },
         { id: "empty", src: "assets/sounds/empty.mp3" },
         { id: "laser", src: "assets/sounds/laser.mp3" },
-        { id: "collect", src: "assets/sounds/bleep.mp3" }
+        { id: "collect", src: "assets/sounds/bleep.mp3" },
+        { id: "bgMusic", src: "assets/sounds/UnderTheClouds.mp3" }
     ];
 
     // SpriteSheet for Player Object
@@ -58,7 +58,7 @@ module managers {
     var missileSheetData = {
         "images": ["assets/images/missile.png", "assets/images/M484SpaceSoldier.png"],
         "frames": [
-            [0, 0, 50, 30, 0],  //missile [0]
+            [0, 0, 100, 60, 0],  //missile [0]
             [150, 270, 50, 50, 1], //boom    [1]
             [417, 12, 48, 48, 1]   //blank [12]
         ],

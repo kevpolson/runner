@@ -5,9 +5,13 @@ module objects {
     export class Missile extends GameObject {
         explosionTime: number;
         exploded: boolean = false;
+        offsetX: number = 24;
+        offsetY: number = 14;
         constructor(stage: createjs.Stage, game: createjs.Container) {
             super(stage, game, managers.Assets.missile, "idle");
             //this.explosionTime = constants.EXPLOSION_TIME;
+            this.width = 50;
+            this.height = 30;
             this.reset();
         }
 
