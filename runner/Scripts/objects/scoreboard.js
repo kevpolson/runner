@@ -34,6 +34,7 @@
             this.totalScoreLabel.y = 20;
 
             this.update();
+
             this.gui = new createjs.Container();
 
             this.gui.addChild(this.livesImage);

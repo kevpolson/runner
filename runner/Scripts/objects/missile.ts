@@ -11,6 +11,7 @@ module objects {
             this.reset();
         }
 
+        //move missile forward and check to see if it has exploded
         update() {
             if (!this.exploded) {
                 this.y += 0.1;
@@ -33,6 +34,7 @@ module objects {
             }
         }
 
+        //respawn missile off-screen at a random point
         reset() {
             var minY = stage.canvas.height * 0.5;
             var maxY = constants.GROUND_HEIGHT - this.regY;

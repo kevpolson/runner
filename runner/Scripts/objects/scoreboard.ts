@@ -46,6 +46,7 @@
 
 
             this.update();
+
             this.gui = new createjs.Container();
             
             this.gui.addChild(this.livesImage);

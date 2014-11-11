@@ -11,6 +11,8 @@ module objects {
         falling: boolean;
         jumpNext: boolean = false;
 
+        enemyX: number;
+        enemyY: number;
         shootNext: boolean = false;
         laser: createjs.Shape;
         GUNX: number = this.regX * 0.5;
@@ -27,12 +29,12 @@ module objects {
             this.prevAnimation = this.currentAnimation;
         }
 
+        //initiate firing the gun
         shootPressed() {
             this.shootNext = true;
         }
 
-        enemyX: number;
-        enemyY: number;
+        //shoot the laser
         shoot() {
             if (!this.gunFired) {
                 createjs.Sound.play("laser");
@@ -46,10 +48,12 @@ module objects {
             }
         }
         
+        //initiate jump when pressed
         jumpPressed() {
             this.jumpNext = true;
         }
 
+        //start jump
         jump() {
             if (!this.jumping) {
                 this.prevAnimation = this.currentAnimation;
@@ -62,7 +66,9 @@ module objects {
             }
         }
 
+
         update() {
+            //if shooting don't jump on the same turn
             if (this.shootNext) {
                 this.shoot();
                 this.jumpNext = false;
@@ -72,13 +78,14 @@ module objects {
                 this.jumpNext = false;
             }
 
-
+            //remove laser after alotted time
             if (this.gunFired) {
                 if(this.fireTime <= createjs.Ticker.getTime()) {
                     this.destroyLaser();
                 }
             }
 
+            //make player jump
             if (this.jumping) {
                 this.prevJumpHeight = this.jumpHieght;
                 this.jumpX += 1; 
@@ -101,19 +108,23 @@ module objects {
             }
         }
 
+        //set running animation
         running() {
             this.gotoAndPlay("running");
         }
 
+        //set idle animation
         idle() {
             this.gotoAndPlay("idle");
         }
 
+        //refresh the laser if the player is jumping
         refreshLaser() {
             this.game.removeChild(this.laser);
             this.createLaser("#DF0174");
         }
 
+        //create the laser object
         createLaser(newColor: string) {
             this.laser = new createjs.Shape();
             this.laser.graphics.beginFill(newColor);
@@ -125,6 +136,7 @@ module objects {
             game.addChild(this.laser);
         }
 
+        //remove laser object
         destroyLaser() {
             if (this.gunFired) {
                 this.gunFired = false;

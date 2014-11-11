@@ -18,6 +18,7 @@ var objects;
             //this.explosionTime = constants.EXPLOSION_TIME;
             this.reset();
         }
+        //move missile forward and check to see if it has exploded
         Missile.prototype.update = function () {
             if (!this.exploded) {
                 this.y += 0.1;
@@ -39,6 +40,7 @@ var objects;
             }
         };
 
+        //respawn missile off-screen at a random point
         Missile.prototype.reset = function () {
             var minY = stage.canvas.height * 0.5;
             var maxY = constants.GROUND_HEIGHT - this.regY;
