@@ -120,7 +120,6 @@
     <TypeScriptCompile Include="Scripts\objects\collectable.ts" />
     <TypeScriptCompile Include="Scripts\objects\label.ts" />
     <TypeScriptCompile Include="Scripts\objects\player.ts" />
-    <TypeScriptCompile Include="Scripts\objects\progress.ts" />
     <TypeScriptCompile Include="Scripts\objects\scoreboard.ts" />
     <TypeScriptCompile Include="Scripts\states\gameover.ts" />
     <TypeScriptCompile Include="Scripts\states\loading.ts" />
