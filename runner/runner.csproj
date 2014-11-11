@@ -59,12 +59,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\images\atlas.png" />
     <Content Include="assets\images\background.png" />
+    <Content Include="assets\images\buttons.png" />
     <Content Include="assets\images\energytank.png" />
-    <Content Include="assets\images\loading.jpg" />
     <Content Include="assets\images\M484SpaceSoldier.png" />
     <Content Include="assets\images\missile.png" />
+    <Content Include="assets\sounds\boom.mp3" />
+    <Content Include="assets\sounds\bleep.mp3" />
+    <Content Include="assets\sounds\death.mp3" />
+    <Content Include="assets\sounds\empty.mp3" />
+    <Content Include="assets\sounds\laser.mp3" />
     <Content Include="assets\sounds\UnderTheClouds.mp3" />
     <Content Include="css\app.css" />
     <Content Include="css\normalize.css" />
@@ -89,9 +93,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\sounds\engine.ogg" />
-    <Content Include="assets\sounds\thunder.ogg" />
-    <Content Include="assets\sounds\yay.ogg" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -119,8 +120,10 @@
     <TypeScriptCompile Include="Scripts\objects\collectable.ts" />
     <TypeScriptCompile Include="Scripts\objects\label.ts" />
     <TypeScriptCompile Include="Scripts\objects\player.ts" />
+    <TypeScriptCompile Include="Scripts\objects\progress.ts" />
     <TypeScriptCompile Include="Scripts\objects\scoreboard.ts" />
     <TypeScriptCompile Include="Scripts\states\gameover.ts" />
+    <TypeScriptCompile Include="Scripts\states\loading.ts" />
     <TypeScriptCompile Include="Scripts\states\menu.ts" />
     <TypeScriptCompile Include="Scripts\states\play.ts" />
   </ItemGroup>

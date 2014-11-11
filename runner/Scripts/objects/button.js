@@ -11,7 +11,7 @@ var objects;
     var Button = (function (_super) {
         __extends(Button, _super);
         function Button(x, y, buttonIDString) {
-            _super.call(this, managers.Assets.atlas, buttonIDString);
+            _super.call(this, managers.Assets.buttons, buttonIDString);
             this.regX = this.getBounds().width / 2;
             this.regY = this.getBounds().height / 2;
             this.x = x;

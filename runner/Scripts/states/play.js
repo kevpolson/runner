@@ -9,6 +9,7 @@
 var states;
 (function (states) {
     function playState() {
+        //update all elements of the play state
         background.update();
         energytank.update();
         player.update();
@@ -20,7 +21,9 @@ var states;
         collision.update();
         scoreboard.update();
 
+        //switch to gameover state
         if (scoreboard.lives <= 0) {
+            createjs.Sound.play("death");
             stage.removeChild(game);
             player.destroy();
             player.destroyLaser();

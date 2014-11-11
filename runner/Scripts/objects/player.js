@@ -32,6 +32,7 @@ var objects;
 
         Player.prototype.shoot = function () {
             if (!this.gunFired) {
+                createjs.Sound.play("laser");
                 this.gunFired = true;
                 this.fireTime = createjs.Ticker.getTime() + this.LASER_DURATION;
 

@@ -29,6 +29,7 @@ var objects;
                 this.x -= this.speed;
 
                 if (this.currentAnimation != "expolsion") {
+                    createjs.Sound.play("explosion");
                     this.gotoAndPlay("expolsion");
                     this.explosionTime = createjs.Ticker.getTime() + constants.EXPLOSION_TIME;
                 } else if (this.explosionTime <= createjs.Ticker.getTime()) {

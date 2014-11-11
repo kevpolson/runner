@@ -1,12 +1,16 @@
-﻿var managers;
+﻿/// <reference path="../states/loading.ts" />
+var managers;
 (function (managers) {
     // Image and Sound Manifest;
     var assetManifest = [
         { id: "loading", src: "assets/images/loading.jpg" },
         { id: "background", src: "assets/images/background.png" },
         { id: "bgMusic", src: "assets/sounds/UnderTheClouds.mp3" },
-        { id: "thunder", src: "assets/sounds/thunder.ogg" },
-        { id: "yay", src: "assets/sounds/yay.ogg" }
+        { id: "explosion", src: "assets/sounds/boom.mp3" },
+        { id: "death", src: "assets/sounds/death.mp3" },
+        { id: "empty", src: "assets/sounds/empty.mp3" },
+        { id: "laser", src: "assets/sounds/laser.mp3" },
+        { id: "collect", src: "assets/sounds/bleep.mp3" }
     ];
 
     // SpriteSheet for Player Object
@@ -69,37 +73,56 @@
         }
     };
 
-    // SpriteSheet for misc Objects
-    var spriteSheetData = {
-        "images": ["assets/images/atlas.png"],
+    // SpriteSheet for Buttons
+    var buttonData = {
+        "images": ["assets/images/buttons.png"],
         "frames": [
-            [2, 2, 226, 178],
-            [230, 2, 211, 69],
-            [443, 69, 62, 63],
-            [443, 2, 65, 65],
-            [230, 73, 211, 69],
-            [230, 144, 211, 69]
+            [0, 0, 190, 49],
+            [0, 50, 190, 49]
         ],
         "animations": {
-            "cloud": [0],
-            "instructionsButton": [1],
-            "island": [2],
-            "plane": [3],
-            "playButton": [4],
-            "tryAgainButton": [5]
+            "start": [0],
+            "playagain": [1]
         }
     };
 
+    /*
+    // SpriteSheet for misc Objects
+    var spriteSheetData = {
+    "images": ["assets/images/atlas.png"],
+    "frames": [
+    [2, 2, 226, 178],
+    [230, 2, 211, 69],
+    [443, 69, 62, 63],
+    [443, 2, 65, 65],
+    [230, 73, 211, 69],
+    [230, 144, 211, 69]
+    ],
+    "animations": {
+    "cloud": [0],
+    "instructionsButton": [1],
+    "island": [2],
+    "plane": [3],
+    "playButton": [4],
+    "tryAgainButton": [5]
+    }
+    }
+    */
     // Asset Manager Class
     var Assets = (function () {
         function Assets() {
         }
         Assets.init = function () {
             createjs.Sound.initializeDefaultPlugins();
+
             this.loader = new createjs.LoadQueue();
+            this.loader.on("progress", states.loadingState, this);
+            this.loader.on("complete", states.loadingUnload, this);
+
             this.loader.installPlugin(createjs.Sound);
             this.loader.loadManifest(assetManifest);
-            this.atlas = new createjs.SpriteSheet(spriteSheetData);
+
+            this.buttons = new createjs.SpriteSheet(buttonData);
             this.player = new createjs.SpriteSheet(playerSheetData);
             this.energytank = new createjs.SpriteSheet(energyTankSheetData);
             this.missile = new createjs.SpriteSheet(missileSheetData);

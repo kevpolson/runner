@@ -39,7 +39,6 @@ var managers;
             p2.x = enemy.x;
             p2.y = enemy.y;
             if (this.distance(p1, p2) < ((this.player.height / 2) + (enemy.height / 2))) {
-                createjs.Sound.play("thunder");
                 enemy.exploded = true;
 
                 this.scoreboard.lives -= 1;
@@ -55,10 +54,9 @@ var managers;
             p2.x = this.energytank.x;
             p2.y = this.energytank.y;
             if (this.distance(p1, p2) < ((this.player.height / 2) + (this.energytank.height / 2))) {
-                createjs.Sound.play("yay");
+                createjs.Sound.play("collect");
                 this.scoreboard.energy += constants.PLAYER_LIVES;
 
-                //this.scoreboard.score += 100;
                 this.energytank.reset();
             }
         };

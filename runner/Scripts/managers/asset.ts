@@ -1,11 +1,15 @@
-﻿module managers {
+﻿/// <reference path="../states/loading.ts" />
+module managers {
     // Image and Sound Manifest;
     var assetManifest = [
         { id: "loading", src: "assets/images/loading.jpg" },
         { id: "background", src: "assets/images/background.png" },
         { id: "bgMusic", src: "assets/sounds/UnderTheClouds.mp3" },
-        { id: "thunder", src: "assets/sounds/thunder.ogg" },
-        { id: "yay", src: "assets/sounds/yay.ogg" }
+        { id: "explosion", src: "assets/sounds/boom.mp3" },
+        { id: "death", src: "assets/sounds/death.mp3" },
+        { id: "empty", src: "assets/sounds/empty.mp3" },
+        { id: "laser", src: "assets/sounds/laser.mp3" },
+        { id: "collect", src: "assets/sounds/bleep.mp3" }
     ];
 
     // SpriteSheet for Player Object
@@ -65,6 +69,20 @@
         }
     }
 
+    // SpriteSheet for Buttons
+    var buttonData = {
+        "images": ["assets/images/buttons.png"],
+        "frames": [
+            [0, 0, 190, 49],  //start      [0]
+            [0, 50, 190, 49]  //play again [1]
+        ],
+        "animations": {
+            "start": [0],
+            "playagain": [1]
+        }
+    }
+
+    /*
     // SpriteSheet for misc Objects
     var spriteSheetData = {
         "images": ["assets/images/atlas.png"],
@@ -85,6 +103,7 @@
             "tryAgainButton": [5]
         }
     }
+    */
 
     // Asset Manager Class
     export class Assets {
@@ -92,17 +111,22 @@
         public static data;
 
         public static loader;
-        public static atlas: createjs.SpriteSheet;
+        public static buttons: createjs.SpriteSheet;
         public static player: createjs.SpriteSheet;
         public static energytank: createjs.SpriteSheet;
         public static missile: createjs.SpriteSheet;
 
         public static init() {
             createjs.Sound.initializeDefaultPlugins();
+
             this.loader = new createjs.LoadQueue();
+            this.loader.on("progress", states.loadingState, this);
+            this.loader.on("complete", states.loadingUnload, this);
+
             this.loader.installPlugin(createjs.Sound);
             this.loader.loadManifest(assetManifest);
-            this.atlas = new createjs.SpriteSheet(spriteSheetData);
+            
+            this.buttons = new createjs.SpriteSheet(buttonData);
             this.player = new createjs.SpriteSheet(playerSheetData);
             this.energytank = new createjs.SpriteSheet(energyTankSheetData);
             this.missile = new createjs.SpriteSheet(missileSheetData);
